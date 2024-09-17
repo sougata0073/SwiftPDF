@@ -45,7 +45,6 @@ public class DeletePagesMainFrame extends JFrame {
             if (this.selectedFile == null) return;
 
             selectedPdfNameLabel.setText("<html><center>" + this.selectedFile.getName() + "</center></html>");
-            System.out.println();
         });
 
         JButton deleteBtn = new JButton("Delete");
