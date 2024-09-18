@@ -14,6 +14,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.URL;
 
 public class Card extends JPanel {
@@ -44,10 +46,13 @@ public class Card extends JPanel {
         descLabel.setFont(Fonts.font2());
         descLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
+        MouseListener mouseListener = getMouseListener();
+
         JButton button = new JButton("Open");
         button.setFont(Fonts.font1());
         button.setHorizontalAlignment(SwingConstants.CENTER);
         button.addActionListener(e -> this.frameToBeOpened.setVisible(true));
+        button.addMouseListener(mouseListener);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 0, 10, 0);
@@ -61,11 +66,45 @@ public class Card extends JPanel {
         add(descLabel, gbc);
         gbc.gridy = 3;
         add(button, gbc);
+
+        addMouseListener(mouseListener);
     }
-    private static ImageIcon createScaledIcon(URL imagePath) {
+    private ImageIcon createScaledIcon(URL imagePath) {
         ImageIcon imageIcon = new ImageIcon(imagePath);
         Image image = imageIcon.getImage();
         Image scaledImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         return new ImageIcon(scaledImage);
+    }
+    private MouseListener getMouseListener(){
+        Color defaultBgColor = getBackground();
+
+        return new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setBackground(defaultBgColor.darker());
+                setBounds(getX() - 2, getY() - 2, getWidth() + 4, getHeight() + 4);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setBackground(defaultBgColor);
+                setBounds(getX() + 2, getY() + 2, getWidth() - 4, getHeight() - 4);
+            }
+        };
     }
 }
