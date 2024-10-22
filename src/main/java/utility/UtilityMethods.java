@@ -8,6 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -92,7 +93,7 @@ public class UtilityMethods {
             numArr[i] = iterator.next() - 1;
             i++;
         }
-
+        Arrays.sort(numArr);
         return numArr;
     }
 
